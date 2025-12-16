@@ -595,7 +595,7 @@ def main():
     print("\n===== 4.1 — Análise Estatística =====")
     comparar_atividades(md_ac, atividades, "Acelerómetro")
     comparar_atividades(md_gi, atividades, "Giroscópio")
-    comparar_atividades(md_ma, atividades, "Magnetómetro")"""
+    comparar_atividades(md_ma, atividades, "Magnetómetro")
 
     # --- 4.2: Extração de features
     # atividades: vetor Nx1 com os rótulos das atividades
@@ -703,6 +703,6 @@ def main():
     instante = 100
     print(f"\nValores das Top 10 features (Fisher Score) no instante {instante}:")
     print(selected_df.iloc[instante])
-    
+    """
 if __name__ == "__main__":
     main()
