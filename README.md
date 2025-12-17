@@ -1,28 +1,43 @@
-Guia de Execução
+# Pipeline de Reconhecimento de Atividades Humanas (HAR)
 
-Pré-requisitos:
-Para executar este projeto, é necessário ter o Python 3.8+ instalado e as seguintes bibliotecas:
--numpy
--pandas
--scipy
--matplotlib
--seaborn
--scikit-learn
--torch (PyTorch - necessário para a extração de embeddings)
+ **Engenharia de Características para Aprendizagem Computacional (ECAC)**
+ Licenciatura em Engenharia Informática/ - Universidade de Coimbra (FCTUC)
 
-Configuração dos Dados:
+Este projeto implementa uma *pipeline* completa de Data Science para **Reconhecimento de Atividades Humanas** (HAR), utilizando o dataset *FORTH-TRACE*. O sistema abrange desde a ingestão de dados brutos de sensores inerciais até à classificação final, comparando engenharia de características manual contra representações latentes (*embeddings*) de Deep Learning.
 
-Antes de executar, é obrigatório configurar o caminho para a pasta onde tens os ficheiros CSV do dataset (ex: part1dev1.csv, part2dev1.csv, etc.).
+---
 
-1.Abre o ficheiro moduleB_main.py.
+## Autor
 
-2.Localiza a variável path dentro da função run_full_evaluation (logo no início).
+* **Akcel Soares da Graça** (2022241055) 
 
-3.Altera o caminho para a localização da tua pasta de dados.
+---
 
-Como Executar:
+## Arquitetura do Projeto
 
-O projeto foi centralizado num único script principal que orquestra todo o processo.
+O trabalho está dividido em dois módulos complementares:
 
-Para correr a avaliação completa (treino, teste estatístico e demonstração de deployment), executa apenas:
--python moduleB_main.py
+### Parte A: Engenharia de Características
+Focada na análise exploratória, limpeza e extração de informação.
+* **Tratamento de Dados:** Deteção de *outliers* usando métodos univariados (Z-Score, IQR) e multivariados (K-Means).
+* **Extração de Features:** Cálculo de métricas temporais, espetrais (FFT) e físicas a partir de acelerómetro, giroscópio e magnetómetro.
+* **Redução de Dimensionalidade:** Implementação de PCA (Principal Component Analysis).
+* **Seleção de Atributos:** Implementação dos algoritmos *Fisher Score* e *ReliefF* para identificar as características mais relevantes.
+
+### Parte B: Machine Learning e Avaliação
+Focada na classificação supervisionada das atividades 1 a 7 (ex: *Standing*, *Walking*, *Climbing Stairs*).
+* **Data Augmentation:** Balanceamento de classes utilizando a técnica **SMOTE** para gerar amostras sintéticas.
+* **Embeddings:** Extração automática de características usando o modelo de Deep Learning **HARNet5** (Transfer Learning) sobre dados reamostrados a 30Hz.
+* **Classificação:** Modelo **k-Nearest Neighbors (kNN)** com otimização automática de hiperparâmetros.
+* **Validação:** Comparação de estratégias de divisão *Within-Subject* vs. *Between-Subjects*.
+* **Deployment:** Sistema "chave-na-mão" capaz de receber um segmento bruto e devolver a classificação.
+
+---
+
+## Instalação e Requisitos
+
+### Pré-requisitos
+O projeto requer **Python 3.8+** e as seguintes bibliotecas:
+
+```bash
+pip install numpy pandas matplotlib scipy scikit-learn torch seaborn
