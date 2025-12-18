@@ -1,43 +1,43 @@
-# Pipeline de Reconhecimento de Atividades Humanas (HAR)
+# Human Activity Recognition (HAR)
 
- **Engenharia de Características para Aprendizagem Computacional (ECAC)**
- Licenciatura em Engenharia Informática/ - Universidade de Coimbra (FCTUC)
+**Feature Engineering for Machine Learning (ECAC)**
+BSc in Informatics Engineering - University of Coimbra (FCTUC)
 
-Este projeto implementa uma *pipeline* completa de Data Science para **Reconhecimento de Atividades Humanas** (HAR), utilizando o dataset *FORTH-TRACE*. O sistema abrange desde a ingestão de dados brutos de sensores inerciais até à classificação final, comparando engenharia de características manual contra representações latentes (*embeddings*) de Deep Learning.
-
----
-
-## Autor
-
-* **Akcel Soares da Graça** (2022241055) 
+This project implements a complete Data Science *pipeline* for **Human Activity Recognition** (HAR), using the *FORTH-TRACE* dataset. The system covers everything from the ingestion of raw inertial sensor data to final classification, comparing manual feature engineering against Deep Learning latent representations (*embeddings*).
 
 ---
 
-## Arquitetura do Projeto
+## Author
 
-O trabalho está dividido em dois módulos complementares:
-
-### Parte A: Engenharia de Características
-Focada na análise exploratória, limpeza e extração de informação.
-* **Tratamento de Dados:** Deteção de *outliers* usando métodos univariados (Z-Score, IQR) e multivariados (K-Means).
-* **Extração de Features:** Cálculo de métricas temporais, espetrais (FFT) e físicas a partir de acelerómetro, giroscópio e magnetómetro.
-* **Redução de Dimensionalidade:** Implementação de PCA (Principal Component Analysis).
-* **Seleção de Atributos:** Implementação dos algoritmos *Fisher Score* e *ReliefF* para identificar as características mais relevantes.
-
-### Parte B: Machine Learning e Avaliação
-Focada na classificação supervisionada das atividades 1 a 7 (ex: *Standing*, *Walking*, *Climbing Stairs*).
-* **Data Augmentation:** Balanceamento de classes utilizando a técnica **SMOTE** para gerar amostras sintéticas.
-* **Embeddings:** Extração automática de características usando o modelo de Deep Learning **HARNet5** (Transfer Learning) sobre dados reamostrados a 30Hz.
-* **Classificação:** Modelo **k-Nearest Neighbors (kNN)** com otimização automática de hiperparâmetros.
-* **Validação:** Comparação de estratégias de divisão *Within-Subject* vs. *Between-Subjects*.
-* **Deployment:** Sistema "chave-na-mão" capaz de receber um segmento bruto e devolver a classificação.
+* **Akcel Soares da Graça** (2022241055)
 
 ---
 
-## Instalação e Requisitos
+## Project Architecture
 
-### Pré-requisitos
-O projeto requer **Python 3.8+** e as seguintes bibliotecas:
+The work is divided into two complementary modules:
+
+### Part A: Feature Engineering
+Focused on exploratory analysis, cleaning, and information extraction.
+* **Data Processing:** *Outlier* detection using univariate (Z-Score, IQR) and multivariate (K-Means) methods.
+* **Feature Extraction:** Calculation of temporal, spectral (FFT), and physical metrics from accelerometer, gyroscope, and magnetometer.
+* **Dimensionality Reduction:** Implementation of PCA (Principal Component Analysis).
+* **Attribute Selection:** Implementation of *Fisher Score* and *ReliefF* algorithms to identify the most relevant features.
+
+### Part B: Machine Learning and Evaluation
+Focused on supervised classification of activities 1 to 7 (e.g., *Standing*, *Walking*, *Climbing Stairs*).
+* **Data Augmentation:** Class balancing using the **SMOTE** technique to generate synthetic samples.
+* **Embeddings:** Automatic feature extraction using the **HARNet5** Deep Learning model (Transfer Learning) on data resampled at 30Hz.
+* **Classification:** **k-Nearest Neighbors (kNN)** model with automatic hyperparameter optimization.
+* **Validation:** Comparison of *Within-Subject* vs. *Between-Subjects* splitting strategies.
+* **Deployment:** "Turnkey" system capable of receiving a raw segment and returning the classification.
+
+---
+
+## Installation and Requirements
+
+### Prerequisites
+The project requires **Python 3.8+** and the following libraries:
 
 ```bash
 pip install numpy pandas matplotlib scipy scikit-learn torch seaborn
